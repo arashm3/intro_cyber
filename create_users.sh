@@ -1,8 +1,14 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/users.sh"
+# This script creates multiple users based on an array of usernames.
+#
+# Username array
+usernames=("atanaka" "alee" "rpatel")
 
-for user in "${users[@]}"; do
-  printf 'DRY RUN: useradd -- %q\n' "$user"
+# create the users by looping through the array
+for username in "${usernames[@]}"
+do
+    sudo useradd -m "$username"
 done
+
+echo "Successfully created users"
